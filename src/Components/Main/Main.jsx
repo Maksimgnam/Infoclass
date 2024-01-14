@@ -18,7 +18,11 @@ const Main = () => {
 
         <BrowserRouter>
 
-            <div className='Main'>
+            <div className='Main' style={{
+                backgroundColor: isTheme ? '#333' : '#fff',
+                color: isTheme ? 'white' : '#333',
+
+            }}>
                 {/* <button onClick={switchThemeChange}>fff</button> */}
 
                 <Header isTheme={isTheme} themeChange={themeChange} />

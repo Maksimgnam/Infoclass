@@ -4,7 +4,8 @@ const Home = () => {
     return (
         <div className='Container'>
             <div className='w-5/6 h-5/6  rounded-xl flex flex-wrap  justify-around  '>
-                <div className='w-5/12 h-full bg-green-300 rounded-xl '>
+                <div className='w-5/12 h-full text-black bg-emerald-500 rounded-xl flex items-center justify-center '>
+                    Image
 
 
                 </div>
@@ -20,10 +21,16 @@ const Home = () => {
                     </div>
                     <h3 className='text-xl font-mono'>Ще фото класу:</h3>
 
-                    <div className='w-full h-48 flex items-center justify-between'>
-                        <div className='w-48 h-40 bg-green-500 rounded-xl'></div>
-                        <div className='w-48 h-40 bg-green-500  rounded-xl'></div>
-                        <div className='w-48 h-40 bg-green-500  rounded-xl'></div>
+                    <div className='w-full h-48 flex items-center '>
+                        <div className='w-44 h-40 text-black bg-emerald-500 rounded-xl flex items-center justify-center m-3 ml-0 mt-1'>
+                            Image
+                        </div>
+                        <div className='w-44 h-40 text-black bg-emerald-500 rounded-xl flex items-center justify-center m-3 ml-0 mt-1'>
+                            Image
+                        </div>
+
+
+
 
                     </div>
 
