@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='Footer bg-emerald-500 flex flex-wrap items-center  justify-between'>
+        <div className='Footer bg-footer flex flex-wrap items-center  justify-between'>
             <div className='text-2xl font-mono pl-3'>infoClass</div>
             <div className='w-48 h-4/5  flex flex-col   '>
                 <h3 className='text-xl font-mono'>Навігація</h3>
@@ -23,7 +23,7 @@ const Footer = () => {
                 </p>
 
             </div>
-            <div className='w-1/5 h-4/5   '>
+            <div className='w-auto h-auto   '>
                 <h3 className='text-xl font-mono'>Контакти</h3>
                 <p className='text-lg font-mono'>
                     <span className=' text-sm font-bold'>Сайт:</span>    <a href="http://shkloschool.kl.com.ua/">shkola-shklo.com</a>
@@ -39,7 +39,7 @@ const Footer = () => {
 
 
             </div>
-            <div className='w-1/6 h-4/5'>
+            <div className='w-auto h-auto'>
                 <h3 className='text-lg font-mono'>Соц.мережі</h3>
                 <div className='w-32 h-11  flex items-center justify-between'>
                     <a href="https://www.youtube.com/@user-io5gq1kv4d">
@@ -60,7 +60,7 @@ const Footer = () => {
 
             </div>
 
-            <div className='w-1/6 h-4/5 '>
+            <div className='w-auto h-auto '>
                 <h3 className='text-xl font-mono'>Адреса</h3>
                 <p className='text-lg font-mono'>Шкло</p>
                 <p className='text-md font-mono'>Львівська область</p>

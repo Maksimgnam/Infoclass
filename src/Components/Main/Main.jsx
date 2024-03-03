@@ -6,6 +6,8 @@ import News from '../News/News';
 import Lessons from '../Lessons/Lessons';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Documents from '../Documents/Documents';
+import Teachers from '../Teachers/Teachers';
 
 const Main = () => {
 
@@ -29,8 +31,8 @@ const Main = () => {
 
                 <Routes>
 
-                    <Route path="/" element={<Home />} excist />
-                    <Route path="/news" element={<News />} />
+                    <Route path="/" element={<div className=' home__container '> <Home /> <Documents /> <Teachers /> </div>} excist />
+                    <Route path="/news" element={<div className='cont'><News /></div>} />
                     <Route path="/gallery" element={<Gallery />} />
                     <Route path="/lessons" element={<Lessons />} />
 

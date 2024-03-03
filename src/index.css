@@ -20,7 +20,7 @@ body {
 
 .Main {
   width: 100%;
-  height: 100vh;
+  height: auto;
   display: flex;
 
   flex-direction: column;
@@ -30,18 +30,21 @@ body {
 
 }
 
-.Header {
-  width: 67%;
-  height: 8%;
-  background-color: white;
+.cont {
+  width: 100%;
+  height: 100vh;
 
-  border-radius: 40px;
+}
+
+.Header {
+  width: 100%;
+  height: 8vh;
+  background-color: white;
+  box-shadow: 0 0 4px #ccc;
   z-index: 1000;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: relative;
-  top: 10px;
 
 }
 
@@ -51,7 +54,7 @@ body {
 
 .Container {
   width: 100%;
-  height: 90%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,9 +62,36 @@ body {
 
 }
 
+.home__container {
+  width: 100%;
+  height: 94vh;
+  overflow-y: scroll;
+  padding-top: 10px;
+}
+
+.page__container {
+  width: 100%;
+  height: 80vh;
+
+
+}
+
+.gallery {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .Footer {
   width: 100%;
-  height: 23%;
+  height: auto;
+  min-height: 23%;
+}
+
+.height {
+  height: 97%;
 }
 
 
@@ -84,4 +114,37 @@ body {
 .dark-mode {
   background-color: black;
   color: white;
+}
+
+
+.bg-lightgreen {
+  background-color: #56e38c;
+}
+
+.bg-button {
+  background-image: linear-gradient(90deg, rgb(111, 251, 197) 0%, rgb(97, 245, 198) 33%, rgb(82, 235, 187) 100%);
+
+}
+
+.bg-footer {
+  background-image: linear-gradient(90deg, rgb(111, 251, 197) 0%, rgb(97, 245, 198) 33%, rgb(82, 235, 187) 100%);
+
+}
+
+.bg-loader {
+  background-image: linear-gradient(90deg, rgb(111, 251, 197) 0%, rgb(97, 245, 198) 33%, rgb(82, 235, 187) 100%);
+
+}
+
+.card {
+  background-color: white;
+  transition: 1s;
+
+}
+
+.card:hover {
+  background-image: linear-gradient(90deg, rgb(111, 251, 197) 0%, rgb(97, 245, 198) 33%, rgb(82, 235, 187) 100%);
+  color: white;
+
+
 }
