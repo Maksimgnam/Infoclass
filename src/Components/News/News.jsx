@@ -70,7 +70,7 @@ const News = () => {
                                                 <div className='w-11/12 h-3/6 pl-2'>
                                                     <div className=' w-full h-14 flex items-center justify-between'>
                                                         <h2 className='text-3xl font-medium'>{item.name}</h2>
-                                                        <h2 className='text-lg text-gray-600 font-medium '>20.02.2024</h2>
+                                                        <h2 className='text-lg text-gray-600 font-medium '>{item.createdDate}</h2>
                                                     </div>
                                                     <div className='w-full h-auto'>
 
