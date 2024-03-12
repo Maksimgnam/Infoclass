@@ -8,6 +8,8 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Documents from '../Documents/Documents';
 import Teachers from '../Teachers/Teachers';
+import TeachersPopup from '../TeachersPopup/TeachersPopup';
+import Motos from '../Motos/Motos';
 
 const Main = () => {
 
@@ -25,20 +27,25 @@ const Main = () => {
                 color: isTheme ? 'white' : '#333',
 
             }}>
-                {/* <button onClick={switchThemeChange}>fff</button> */}
-
                 <Header isTheme={isTheme} themeChange={themeChange} />
-
                 <Routes>
+                    <Route path="/" element={
+                        <div className=' home__container '>
+                            <Home isTheme={isTheme} />
+                            <Motos />
+                            <Teachers />
+                            <Documents isTheme={isTheme} />
 
-                    <Route path="/" element={<div className=' home__container '> <Home /> <Documents /> <Teachers /> </div>} excist />
-                    <Route path="/news" element={<div className='cont'><News /></div>} />
+                        </div>
+                    } excist />
+                    <Route path="/news" element={<div className='cont'><News isTheme={isTheme} /></div>} />
                     <Route path="/gallery" element={<Gallery />} />
-                    <Route path="/lessons" element={<Lessons />} />
+                    <Route path="/lessons" element={<Lessons isTheme={isTheme} />} />
 
                 </Routes>
 
             </div>
+            {/* <TeachersPopup isTheme={isTheme} /> */}
             <Footer />
         </BrowserRouter >
 

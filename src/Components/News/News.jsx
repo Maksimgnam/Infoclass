@@ -1,107 +1,123 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { isToday, isThisWeek, isThisMonth, isYesterday } from 'date-fns';
 
-const News = () => {
-
+const News = ({ isTheme }) => {
     const [news, setNews] = useState([]);
-    const [searchName, setSearchName] = useState('')
+    const [searchName, setSearchName] = useState('');
+    const [sordDate, setSortDate] = useState('')
 
     useEffect(() => {
         const fetchNews = async () => {
             try {
                 const response = await fetch('https://next-admin-server-1.onrender.com/api/get-news');
                 const data = await response.json();
-                setNews(data)
-
+                setNews(data);
+            } catch (error) {
+                console.error('Error fetching news:', error);
             }
-            catch (error) {
-                console.log('something wrong with news')
+        };
+
+        fetchNews();
+    }, []);
+
+    const filteredNews = news.filter((item) => {
+        const newsDate = new Date(item.createdDate);
 
 
-            }
+        let dateFilter;
+        switch (sordDate) {
+            case 'today':
+                dateFilter = isToday(newsDate);
+                break;
+            case 'yesterday':
+                dateFilter = isYesterday(newsDate);
+                break;
+            case 'week':
+                dateFilter = isThisWeek(newsDate);
+                break;
+            case 'month':
+                dateFilter = isThisMonth(newsDate);
+                break;
+            default:
+                dateFilter = true;
         }
 
 
-        fetchNews()
+        const searchFilter = searchName
+            ? item.name.toLowerCase().includes(searchName.toLowerCase())
+            : true;
 
-    }, []);
-
-    const filteredNews = news.filter(item =>
-        item.name.toLowerCase().includes(searchName.toLowerCase())
-
-    )
+        return dateFilter && searchFilter;
+    });
 
     return (
         <div className='cont'>
-
-
-            {
-                news.length > 0 ? (
-                    <>
-                        <div className='w-full h-14 flex justify-center relative top-3'>
-                            <div className='w-96 h-full  rounded-2xl flex items-center justify-center'>
-                                <input value={searchName} onChange={(e) => setSearchName(e.target.value)} type="text" placeholder='Пошук' className='w-5/6 h-12 text-lg bg-slate-100  rounded-3xl  placeholder:text-lg outline-none pl-5' />
-                                <div className='w-12 h-12 bg-slate-200 rounded-md flex items-center justify-center relative right-8'>
-                                    <img className='w-6 h-6' src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/search-icon.png" alt="" />
-                                </div>
-                            </div>
+            <div className='w-full h-14 flex justify-center relative top-3'>
+                <div className='w-auto max-w-bar h-full flex items-center justify-between '>
+                    <h2 className='text-2xl font-medium '>Новини</h2>
+                    <div className='w-96 h-full rounded-2xl flex items-center justify-end'>
+                        <input
+                            value={searchName}
+                            onChange={(e) => setSearchName(e.target.value)}
+                            type="text"
+                            placeholder='Пошук новин...'
+                            className='w-5/6 h-12 text-lg text-black bg-transparent rounded-3xl  placeholder:text-lg outline-none pl-5'
+                        />
+                        <div className='w-12 h-12 bg-button rounded-md flex items-center justify-center relative right-8'>
+                            <img className='w-5 h-5' src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/search-icon.png" alt="" />
                         </div>
-
-                        {
-                            filteredNews.length > 0 ? (
-                                <div className='w-full  h-5/6 flex flex-wrap justify-center overflow-y-scroll  pl-5 relative top-5'>
-                                    {
-                                        filteredNews.map((item, index) => (
-                                            // <div key={index} className='w-5/6 h-auto hover:bg-slate-100 p-2 pt-0   rounded-lg m-4'>
-
-                                            //     <div className='w-full h-4/6 rounded-lg  flex items-center justify-center relative top-2.5'>
-                                            //         <img className='w-full h-full rounded-lg' src={item.image} alt="" />
-                                            //     </div>
-
-                                            //     <div className='w-full h-auto  p-2 pl-1 relative top-2 '>
-                                            //         <h3 className='text-2xl font-mono'>{item.title}</h3>
-                                            //         <div className='w-full h-auto break-words '>
-                                            //             <p className='font-mono '>{item.description}</p>
-                                            //         </div>
-                                            //     </div>
-
-                                            // </div>
-                                            <div key={index} className='w-2/6 h-5/6 rounded-xl flex flex-col items-center m-3 pt-2'>
-                                                <div className='w-11/12 h-3/6 bg-slate-100 rounded-xl' ></div>
-                                                <div className='w-11/12 h-3/6 pl-2'>
-                                                    <div className=' w-full h-14 flex items-center justify-between'>
-                                                        <h2 className='text-3xl font-medium'>{item.name}</h2>
-                                                        <h2 className='text-lg text-gray-600 font-medium '>{item.createdDate}</h2>
-                                                    </div>
-                                                    <div className='w-full h-auto'>
+                    </div>
+                    <div className='w-36 h-12 bg-button rounded-lg flex items-center justify-around '>
+                        <img className='w-7 h-7 relative left-1' src="https://cdn-icons-png.flaticon.com/512/178/178441.png" alt="" />
+                        <select
+                            className='w-5/6  h-full text-lg  bg-transparent outline-none pl-2'
+                            name=""
+                            id=""
+                            value={sordDate}
+                            onChange={(e) => setSortDate(e.target.value)}
+                        >
+                            <option value="">Усі дати</option>
+                            <option value="today">Сьогодні</option>
+                            <option value="yesterday">Вчора</option>
+                            <option value="week">Тиждень</option>
+                            <option value="month">Місяць</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            {
+                news.length > 0 ? (<>
 
 
-                                                        <p className='text-lg text-gray-400 font-medium'>{item.description}</p>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                        ))
-
-                                    }
+                    {filteredNews.length > 0 ? (
+                        <div className='w-full  h-5/6 flex flex-wrap justify-center overflow-y-scroll  pl-5 relative top-5'>
+                            {filteredNews.map((item, index) => (
+                                <div key={index} className='w-auto min-w-card h-5/6 rounded-xl flex flex-col items-center m-3 pt-2'>
+                                    <div className='w-11/12 h-3/6 bg-slate-100 rounded-xl'>
+                                        <img className='w-full h-full rounded-xl' src="https://thumbor.bigedition.com/canion-do-funil/1-XwGPkqu2z8sxyeILZgafef_jA=/480x360/filters:format(webp):quality(80)/granite-web-prod/98/71/987127fad40c48a0b66596b01565632f.jpeg" alt="" />
+                                    </div>
+                                    <div className='w-11/12 h-3/6 pl-2'>
+                                        <div className=' w-full h-14 flex items-center justify-between'>
+                                            <h2 className='text-3xl font-medium'>{item.name}</h2>
+                                            <h2 className='text-lg text-gray-600 font-medium '>{item.createdDate}</h2>
+                                        </div>
+                                        <div className='w-full h-auto'>
+                                            <p className='text-lg text-gray-400 font-medium'>{item.description}</p>
+                                        </div>
+                                    </div>
                                 </div>
-
-                            ) : (
-                                <div className=' w-full h-full text-3xl font-mono text-gray-500 flex items-center justify-center'>Не знайдено</div>
-
-
-                            )
-                        }
-
-                    </>
-                ) : (
-                    <div className=' w-full h-full text-3xl font-mono text-gray-500 flex items-center justify-center'>Під'єднання...</div>
-
+                            ))}
+                        </div>
+                    ) : (
+                        <div className='w-full h-full text-3xl font-mono text-gray-500 flex items-center justify-center'>Не знайдено</div>
+                    )}
+                </>) : (
+                    <div className='w-full h-full  text-3xl font-mono text-gray-500 flex items-center justify-center'>Під'єднання...</div>
                 )
             }
 
         </div >
-    )
-}
+    );
+};
 
-export default News
+export default News;

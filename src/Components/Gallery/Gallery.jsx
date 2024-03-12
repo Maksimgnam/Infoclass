@@ -39,7 +39,7 @@ const Gallery = () => {
         <div className='gallery'>
             {
                 gallery.length > 0 ? (
-                    <div className='w-10/12 h-5/6 flex flex-wrap  '>
+                    <div className='w-11/12 h-full flex flex-wrap items-center  '>
                         {
                             gallery.map((item, index) => (
                                 <div key={index} style={initialCardDimensions[index]} className='w-full h-full rounded-xl  flex items-center justify-center   m-5 mt-0 ml-0'>

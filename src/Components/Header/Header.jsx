@@ -9,6 +9,7 @@ const Header = ({ isTheme, themeChange }) => {
             color: isTheme ? 'white' : '#333',
 
             padding: '20px',
+            boxShadow: isTheme ? '' : '0 0 4px #ccc'
         }}>
             <Logo />
             <div className='w-3/12 h-10 flex items-center justify-between'>
@@ -20,11 +21,12 @@ const Header = ({ isTheme, themeChange }) => {
                 <a className=' text-lg font-mono  hover:text-emerald-500'>
                     <Link to="/news">Новини</Link>
                 </a>
+                <a className=' text-lg  font-mono hover:text-emerald-500'>
+                    <Link to="/lessons">Уроки</Link>         </a>
                 <a className=' text-lg  font-mono  hover:text-emerald-500'>
                     <Link to="/gallery">Галерея</Link>
                 </a>
-                <a className=' text-lg  font-mono hover:text-emerald-500'>
-                    <Link to="/lessons">Уроки</Link>         </a>
+
             </div>
             <button className=' w-10 h-10  rounded-3xl hover:bg-emerald-400 flex items-center justify-center' onClick={themeChange}>
                 {
